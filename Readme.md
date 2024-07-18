@@ -22,7 +22,7 @@ Full documentation with performance evaluation only available in Spanish.
 1. **Clone the repository**:
 
     ```bash
-    git clone ...
+    git clone https://github.com/AlejandroCarmonaM/CUDA_Matmul_kernels.git
     cd CUDA_Matmul_kernel
     ```
 
@@ -34,20 +34,21 @@ Full documentation with performance evaluation only available in Spanish.
 
 Running the matrix multiplication:
 - Navigate to the chosen implementation.
-- Run the make command to build whichever version of a given implementation (regular, benchmark, test on CPU, test on GPU (cublas)).
+- Modify the `Makefile` argument called `PROG` and Run the make command to build whichever version of a given implementation (regular, benchmark, test on CPU, test on GPU (cublas)).
 - Run the executable.
 
 ## Customizing Parameters
 
-You can modify the matrix dimensions and block configurations by editing the main function in `matmul.cu`.
+You can modify the matrix dimensions and block configurations when running the program via CLI.
 
 ## Validating Results
 
-Use the provided test programs to validate the correctness of your kernel implementations:
+If the implementation is modified, use the provided test programs to validate the correctness of your kernel implementations:
 
+- 1. Modify the `Makefile` argument called `PROG` and write the selected test
 ```bash
-nvcc -o test compara_kernels_test_v1.cu
-./test
+make
+./selected_test
 ```
 
 ## Kernel Comparison Program
@@ -75,6 +76,7 @@ Example syntax:
 ```bash
 mulmatcua_1G –N=<matrix_dimensions> -W=<block_dimensions>
 ```
+For simplicity, N must be a multiple of W.
 
 ## General GPU Matrix Multiplication Program
 
@@ -86,7 +88,7 @@ Example syntax:
 mulmat_1G –M=<matrix_dimensions> –N=<matrix_dimensions> –K=<matrix_dimensions> -W=<block_dimensions>
 ```
 
-For simplicity, M, N and K must be a multiple of W.
+For simplicity, M, N and K must be multiples of W.
 
 ## Hybrid CPU-GPU Matrix Multiplication Program
 
@@ -97,3 +99,5 @@ Example syntax:
 ```bash
 mulmat_1C1G –M=<matrix_dimensions> –N=<matrix_dimensions> –K=<matrix_dimensions> -W=<block_dimensions> -F=<cpu_rows>
 ```
+
+Same restrictions apply to the GPU part with M, N, K and F as multiples to W.
