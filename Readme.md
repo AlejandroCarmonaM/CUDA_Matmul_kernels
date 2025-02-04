@@ -1,4 +1,4 @@
-# CUDA_Matmul_kernel
+# CUDA_Matmul_kernels
 
 ## Description
 
